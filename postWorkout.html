@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./postworkout.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <ul id="navList">
+        <li class="navItem">
+          <a
+            href="https://dd2fc06f-9b5b-4352-b1ed-cc92c92cb652-00-24k22h3c1bs3y.riker.replit.dev/"
+            >Home</a
+          >
+        </li>
+        <li class="navItem">
+          <a
+            href="https://dd2fc06f-9b5b-4352-b1ed-cc92c92cb652-00-24k22h3c1bs3y.riker.replit.dev/workouts.html"
+            >Workouts</a
+          >
+        </li>
+        <li class="navItem">
+          <a
+            href="https://dd2fc06f-9b5b-4352-b1ed-cc92c92cb652-00-24k22h3c1bs3y.riker.replit.dev/postWorkout.html"
+            >Uploads</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <br />
+    <h1>Proof of Completion!</h1>
+    <p>
+      Welcome! Here you upload your full length video to be allowed to move onto
+      the next day, one step closer to claiming your reward!
+    </p>
+    <form id="form">
+      <label for="myfile">Select a file:</label><br /><br />
+      <input type="file" id="myfile" accept="video/*" /><br /><br />
+      <video id="videoPlayer" controls></video>
+    </form>
+    <script>
+      let day = 0;
+          let last = 0;
+      if (!localStorage.getItem("day")) {
+        localStorage.setItem("day", 0);
+      } else {
+        day = localStorage.getItem("day");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const videoInput = document.getElementById("myfile");
+        const videoPlayer = document.getElementById("videoPlayer");
+        const difficulty = document.getElementById("difficulty");
+        videoInput.addEventListener("change", function () {
+          const file = this.files[0];
+          const blobURL = URL.createObjectURL(file);
+          videoPlayer.src = blobURL;
+          if (videoPlayer.oncanplay) {
+            console.log(videoPlayer.duration);
+            var x = setInterval(increment, 0);
+          }
+            if(day - last == 1){
+                clearInterval(x);
+            }
+        });
+      });
+      function increment() {
+        var date = new Date();
+        var time =
+          date.getHours() +
+          ":" +
+          date.getMinutes() +
+          ":" +
+          date.getSeconds() +
+          ":" +
+          date.getMilliseconds();
+        console.log(time);
+        if (time == "00:00:0:0") {
+            last = day;
+          localStorage.setItem("day", day + 1);
+        }
+        
+      }
+    </script>
+      <hr>
+  </body>
+</html>

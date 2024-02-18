@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='./style.css'>
+      <link rel='stylesheet' href='./workout.css'>
+    <script src='./index.js' defer></script>
+    <title>Workouts - BitConnect</title>
+  </head>
+  <body>
+    <nav>
+      <ul id='navList'>
+        <li class='navItem'><a href='https://dd2fc06f-9b5b-4352-b1ed-cc92c92cb652-00-24k22h3c1bs3y.riker.replit.dev/'>Home</a></li>
+        <li class='navItem'><a href='https://dd2fc06f-9b5b-4352-b1ed-cc92c92cb652-00-24k22h3c1bs3y.riker.replit.dev/workouts.html'>Workouts</a></li>
+        <li class='navItem'><a href='https://dd2fc06f-9b5b-4352-b1ed-cc92c92cb652-00-24k22h3c1bs3y.riker.replit.dev/postWorkout.html'>Uploads</a></li>
+      </ul>
+    </nav>
+    <br>
+    <label for='group'>
+      <h1 id="workoutHeading">What do you want to work on?</h1>
+    </label id="dropdown">
+    <select id='group' onchange="groupChange()">
+      <option default>Select one</option>
+      <option>Abs</option>
+      <option>Legs</option>
+      <option>Arms</option>
+      <option>Chest</option>
+    </select>
+    <br><br>
+    <h4 id='toph4'>How much is your max?</h4>
+    <form id='abs' onsubmit="absSubmit()">
+      <fieldset>
+        <legend>Max Side Planks:</legend>
+        <input type="range" id='sideplanks' name='sideplanks' min=15 max=120 oninput='rangeChange()'>
+        <label for='sideplanks' id='sideplanksLabel'>68 secs</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Leg Raises:</legend>
+        <input type="range" id='legraises' name='legraises' min=5 max=30 oninput='rangeChange()'>
+        <label for='legraises' id='legraisesLabel'>18</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Crunches:</legend>
+        <input type="range" id='crunches' name='crunches' min=20 max=120 oninput='rangeChange()'>
+        <label for='crunches' id='crunchesLabel'>70</label>
+      </fieldset>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    <form id='legs' onsubmit="legsSubmit()">
+      <fieldset>
+        <legend>Max Pistol Squats:</legend>
+        <input type='range' id='pistol' name='pistol' min=5 max=30 oninput='rangeChange()'>
+        <label for='pistol' id='pistolLabel'>18</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Calf Raises:</legend>
+        <input type='range' id='calfraise' name='calfraise' min=20 max=200 oninput='rangeChange()'>
+        <label for='calfraise' id='calfraiseLabel'>110</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Lunges:</legend>
+        <input type='range' id='lunge' name='lunge' min=10 max=120 oninput='rangeChange()'>
+        <label for='lunge' id='lungeLabel'>65</label>
+      </fieldset>
+        <br>
+      <input type='submit' value='Submit'>
+    </form>
+    <form id='arms' onsubmit="armsSubmit()">
+      <fieldset>
+        <legend>Max Finger Tip Holds:</legend>
+        <input type='range' id='holds' name='holds' min=5 max=30 oninput='rangeChange()'>
+        <label for='holds' id='holdsLabel'>18</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Diamond Pushups:</legend>
+        <input type='range' id='diamondpushups' name='diamondpushups' min=5 max=75 oninput='rangeChange()'>
+        <label for='diamondpushups' id='diamondpushupsLabel'>40</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Closed Grip Pullups:</legend>
+        <input type='range' id='pull' name='pull' min=1 max=30 oninput='rangeChange()'>
+        <label for='pull' id='pullLabel'>15</label>
+      </fieldset>
+        <br>
+      <input type='submit' value='Submit'>
+    </form>
+    <form id='chest' onsubmit="chestSubmit()">
+      <fieldset>
+        <legend>Max Wide Grip Pushups:</legend>
+        <input type='range' id='widepush' name='widepush' min=10 max=100 oninput='rangeChange()'>
+        <label for='widepush' id='widepushLabel'>55</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Incline Pushups:</legend>
+        <input type='range' id='incline' name='incline' min=0 max=200 oninput='rangeChange()'>
+        <label for='incline' id='inclineLabel'>100</label>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Max Decline Pushups:</legend>
+        <input type='range' id='declinepushups' name='declinepushups' min=0 max=50 oninput='rangeChange()'>
+        <label for='declinepushups' id='declinepushupsLabel'>25</label>
+      </fieldset>
+        <br>
+      <input type='submit' value="Submit">
+    </form>
+    <div id='start'>
+      <h3>
+      Ready to start your workout?</h1>
+      <p>Here's a preview of your workout: </p>
+      <p>
+        <b>Round 1</b><br>
+      <ul>
+        <li id='r1l1'></li>
+        <li id='r1l2'></li>
+        <li id='r1l3'></li>
+        <li id='r1l4'></li>
+      </ul>
+      <b>Round 2</b><br>
+      <ul>
+        <li id='r2l1'></li>
+        <li id='r2l2'></li>
+        <li id='r2l3'></li>
+        <li id='r2l4'></li>
+      </ul>
+      <b>Round 3</b><br>
+      <ul>
+        <li id='r3l1'></li>
+        <li id='r3l2'></li>
+        <li id='r3l3'></li>
+      </ul>
+      </p>
+    </div>
+  </body>
+</html>
